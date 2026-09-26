@@ -1,2 +1,2 @@
 # Customer Analysis Platform
-End-to-end PaaS that provides insights about customer from a retail platform, through an ELT pipeline.
+End-to-end ELT pipeline that works with customers data from a retail platform, which objective is to provide insights about their purchase tendencies and patterns, in order to help in the business decision-making.
