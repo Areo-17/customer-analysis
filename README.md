@@ -1,2 +1,2 @@
-# Customer Analysis Platform
+# Retail platform Customer Analysis 
 End-to-end ELT pipeline that works with customers data from a retail platform, which objective is to provide insights about their purchase tendencies and patterns, in order to help in the business decision-making.
