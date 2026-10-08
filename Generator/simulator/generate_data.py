@@ -1,5 +1,5 @@
 from faker import Faker
-from utils import offers
+from Customer_analysis.Generator.utils import utils
 import random
 import numpy as np
 from datetime import timedelta
@@ -11,7 +11,7 @@ class Generator:
         self.fake = Faker('es_MX')
 
     def user(self, existing_users: list = []):
-        user_id = offers.get_id(existing_users, 'user_id')
+        user_id = utils.get_id(existing_users, 'user_id')
         user_info = {
             'user_id': user_id,
             'user_name': self.fake.name(),
@@ -23,7 +23,7 @@ class Generator:
         return user_info
 
     def brands(self, existing_brands = []):
-        brand_id = offers.get_id(existing_brands, 'brand_id')
+        brand_id = utils.get_id(existing_brands, 'brand_id')
         brand_info = {
             'brand_id': brand_id,
             'brand_name': self.fake.company(),
@@ -58,7 +58,7 @@ class Generator:
             category_name = random.choice(categories)
             products[category_name]['brands'].append(brand_item)
         # Change to another approach. Change products parameter to a pre-built dict that includes categories as keys and the list of products as value. Get the new brands previously generated, select randomly one and get that brand out of the list with pop. Assign the poped brand to a random category.
-        product_id = offers.get_id(existing_products, 'product_id')
+        product_id = utils.get_id(existing_products, 'product_id')
         final_products = []
         for category in categories:
             for product in products[category]['products']:
@@ -82,7 +82,7 @@ class Generator:
         return final_products
 
     def create_offer(products: list[dict], existing_offers: list[dict] = [], init_date = None):
-        offer_id = offers.get_id(existing_offers, 'offer_id')
+        offer_id = utils.get_id(existing_offers, 'offer_id')
         final_offers = []
         for product in products:
             offer = {
@@ -95,7 +95,7 @@ class Generator:
         return final_offers
 
     def customer_activity(user_record: dict, offers_records: list, logged_in_date = None, activity_records: list[dict] = []):
-        event_id = offers.get_id(activity_records, 'event_id')
+        event_id = utils.get_id(activity_records, 'event_id')
         activity_record = {
             'event_id': event_id,
             'customer_id': user_record['user_id'],
@@ -121,7 +121,7 @@ class Generator:
         return activity_record
 
     def orders(order_records = [], activity_records = []):
-        order_id = offers.get_id(order_records, 'order_id')
+        order_id = utils.get_id(order_records, 'order_id')
         orders = []
         for event in activity_records:
             if event['transaction_date'] != None:
